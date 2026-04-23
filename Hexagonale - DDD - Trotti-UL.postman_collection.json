@@ -1,0 +1,730 @@
+{
+	"info": {
+		"_postman_id": "6b466bcd-4e5d-4360-8b25-1f02764882ab",
+		"name": "Hexagonale - DDD - Trotti-UL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48887773",
+		"_collection_link": "https://teofeo-8116988.postman.co/workspace/T%C3%A9o-Franoux's-Workspace~781b772f-ef8b-418d-8a3f-e7bbf7779f71/collection/48887773-6b466bcd-4e5d-4360-8b25-1f02764882ab?action=share&source=collection_link&creator=48887773"
+	},
+	"item": [
+		{
+			"name": "🔐 Auth & Account",
+			"item": [
+				{
+					"name": "Auth - Create Account (User Signup)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idul\": \"GER2\",\r\n  \"name\": \"Gérard\",\r\n  \"email\": \"gerard@gmail.com\",\r\n  \"gender\": \"MALE\",\r\n  \"password\": \"Mot2Passe!\",\r\n  \"dateOfBirth\": \"2004-10-17\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/signup",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth - Login & Retrieve JWT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    const token = pm.response.json().accessToken;\r",
+									"    pm.globals.set(\"bearer_token\", token);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"gerard@gmail.com\",\r\n  \"password\": \"Mot2Passe!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Account - Get Balance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/accounts/balance",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"accounts",
+								"balance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Account - Add Payment Method",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cardNumber\": \"41111111111111111\",\r\n    \"expiry\": \"12/25\",\r\n    \"cvv\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/accounts/payment-method",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"accounts",
+								"payment-method"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Account - List Invoices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/accounts/invoices",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"accounts",
+								"invoices"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🎓 Semesters",
+			"item": [
+				{
+					"name": "Semesters - List Available Semesters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/semesters",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"semesters"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🎫 Passes",
+			"item": [
+				{
+					"name": "Pass - Purchase a Pass",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"semesterCode\": \"A25\",\r\n  \"dailyTripDurationMinutes\": 50,\r\n  \"billingMode\": \"PER_TRIP\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/accounts/passes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"accounts",
+								"passes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pass - List User Passes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/accounts/passes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"accounts",
+								"passes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pass - Get Valid Pass",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/accounts/passes/valid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"accounts",
+								"passes",
+								"valid"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🏢 Stations & Scooters",
+			"item": [
+				{
+					"name": "Stations - List Stations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/stations",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"stations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Stations - List Scooters at Station",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/stations/:location/scooters",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"stations",
+								":location",
+								"scooters"
+							],
+							"variable": [
+								{
+									"key": "location",
+									"value": "peps"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🛴 Rides",
+			"item": [
+				{
+					"name": "Ride - Generate Code",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 201) {\r",
+									"    const body = pm.response.json();\r",
+									"    const code = body.code;\r",
+									"    pm.globals.set(\"ride-code\", code);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/rides/generate-code",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"rides",
+								"generate-code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ride - Start Ride",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"code\": \"{{ride-code}}\",\r\n  \"stationLocation\": \"Peps\",\r\n  \"slotNumber\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/rides/start",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"rides",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ride - Finish Ride",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"stationLocation\": \"peps\",\r\n  \"slotNumber\": 25\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/rides/end",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"rides",
+								"end"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ride - Ride History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/rides/history",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"rides",
+								"history"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🔧 Technicians",
+			"item": [
+				{
+					"name": "Technician - Create Account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idul\": \"GER2\",\r\n  \"name\": \"Gérard\",\r\n  \"email\": \"gerard@gmail.com\",\r\n  \"gender\": \"MALE\",\r\n  \"password\": \"Mot2Passe!\",\r\n  \"dateOfBirth\": \"2004-10-17\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/technicians",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"technicians"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Technician - Load Scooters Into Truck",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"stationLocation\": \"Peps\",\r\n  \"slotNumbers\": [1, 2, 3]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/technician/truck/load",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"technician",
+								"truck",
+								"load"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Technician - Unload Scooters From Truck",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"destinationStationLocation\": \"Peps\",\r\n  \"placements\": [\r\n    { \"scooterId\": \"PEPS-S1\", \"slotNumber\": 1 },\r\n    { \"scooterId\": \"PEPS-S2\", \"slotNumber\": 2 },\r\n    { \"scooterId\": \"PEPS-S3\", \"slotNumber\": 3 }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/technician/truck/unload",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"technician",
+								"truck",
+								"unload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Technician - Get Truck Content",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/technician/truck",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"technician",
+								"truck"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🛠 Maintenance",
+			"item": [
+				{
+					"name": "Maintenance - Report Station Issue",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"stationLocation\": \"PEPS\",\r\n  \"reason\": \"Borne de recharge défectueuse sur les emplacements 3 et 5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/maintenance/request",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"maintenance",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Maintenance - List Active Maintenance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/maintenance",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"maintenance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Maintenance - Get Maintenance Details for Station",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/maintenance/PEPS",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"maintenance",
+								"PEPS"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Maintenance - List Maintenance Requests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/maintenance/requests",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"maintenance",
+								"requests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Maintenance - Get Request by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/maintenance/requests/:requestId",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"maintenance",
+								"requests",
+								":requestId"
+							],
+							"variable": [
+								{
+									"key": "requestId",
+									"value": "6c850af9-42cb-4475-b61a-20f01581c3af"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Maintenance - List Pending Requests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/maintenance/requests/pending",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"maintenance",
+								"requests",
+								"pending"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🛠 Maintenance Operations",
+			"item": [
+				{
+					"name": "Maintenance - Start Operation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/maintenance/requests/:requestId/start",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"maintenance",
+								"requests",
+								":requestId",
+								"start"
+							],
+							"variable": [
+								{
+									"key": "requestId",
+									"value": "2e654cea-f904-46bf-b5dc-84b919da8b42"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Maintenance - Complete Operation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/maintenance/requests/:requestId/end",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"maintenance",
+								"requests",
+								":requestId",
+								"end"
+							],
+							"variable": [
+								{
+									"key": "requestId",
+									"value": "6c850af9-42cb-4475-b61a-20f01581c3af"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearer_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": ""
+		}
+	]
+}

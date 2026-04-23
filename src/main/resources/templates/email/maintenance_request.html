@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Demande de maintenance</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f9fb; color: #1c2430; margin: 0; padding: 0; }
+        .card { max-width: 600px; margin: 24px auto; background: #ffffff; border-radius: 14px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+        .highlight { color: #0d6efd; font-weight: 700; }
+        .reason { margin-top: 14px; padding: 12px; background: #f2f6ff; border-left: 4px solid #0d6efd; border-radius: 8px; }
+        .footer { margin-top: 18px; color: #5c6874; font-size: 13px; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="title">Nouvelle demande de maintenance</div>
+    <p>Une intervention est requise pour la station <span class="highlight">{{station}}</span>.</p>
+    <div class="reason">
+        {{reason}}
+    </div>
+    <div class="footer">
+        Merci de prendre en charge cette demande dès que possible.<br>
+        Trotti-UL
+    </div>
+</div>
+</body>
+</html>

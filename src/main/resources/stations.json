@@ -1,0 +1,42 @@
+[
+    {
+        "location": "VACHON",
+        "name": "Entrée Vachon #1",
+        "capacity": 15
+    },
+    {
+        "location": "PEPS",
+        "name": "Entrée PEPS #3",
+        "capacity": 25
+    },
+    {
+        "location": "DESJARDINS",
+        "name": "Centre de service - Desjardins",
+        "capacity": 20
+    },
+    {
+        "location": "VANDRY",
+        "name": "Cours du vandry",
+        "capacity": 15
+    },
+    {
+        "location": "MYRAND",
+        "name": "Secteur EST",
+        "capacity": 12
+    },
+    {
+        "location": "PYRAMIDE",
+        "name": "Secteur Nord - Chemin Ste-foy",
+        "capacity": 15
+    },
+    {
+        "location": "CASAULT",
+        "name": "Secteur art",
+        "capacity": 14
+    },
+    {
+        "location": "PLACE_STE_FOY",
+        "name": "Secteur Ouest - Place Ste-foy",
+        "capacity": 15
+    }
+]

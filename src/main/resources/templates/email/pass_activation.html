@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Activation du pass</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f6fb; color: #1b2430; margin: 0; padding: 0; }
+        .card { max-width: 640px; margin: 24px auto; background: #ffffff; border-radius: 12px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+        .title { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+        .subtitle { color: #516173; margin-bottom: 24px; }
+        .info { list-style: none; padding: 0; margin: 0; }
+        .info li { margin: 8px 0; padding: 10px 12px; background: #f1f4fb; border-radius: 8px; }
+        .footer { margin-top: 28px; color: #516173; font-size: 13px; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="title">Bonjour {{firstName}},</div>
+    <div class="subtitle">Votre pass Trotti-UL est maintenant actif.</div>
+    <ul class="info">
+        <li><strong>Semestre :</strong> {{semester}}</li>
+        <li><strong>Durée quotidienne :</strong> {{dailyMinutes}} minutes</li>
+        <li><strong>Mode de facturation :</strong> {{billingMode}}</li>
+        <li><strong>Prix :</strong> {{price}} $</li>
+        <li><strong>Date d'achat :</strong> {{purchasedAt}}</li>
+    </ul>
+    <div class="footer">
+        Bon transport !<br>
+        L'équipe Trotti-UL
+    </div>
+</div>
+</body>
+</html>

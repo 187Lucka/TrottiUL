@@ -1,0 +1,25 @@
+
+services:
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    restart: unless-stopped
+
+  app:
+    build: .
+    container_name: trotti-ul-app
+    depends_on:
+      - mailhog
+    environment:
+      SMTP_HOST: mailhog
+      SMTP_PORT: 1025
+      SMTP_FROM: contact@trotti-ul.dev
+      SMTP_AUTH: "false"
+      SMTP_STARTTLS: "false"
+      JWT_SECRET: 628c139a3ee95a7e1200f202b22f47c67de80e3d900505f28fd7b48d8e45255e61fcd409314ea48f
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
