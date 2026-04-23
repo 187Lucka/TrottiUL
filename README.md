@@ -5,6 +5,7 @@ Plateforme complète pour la gestion des déplacements, abonnements, stations, t
 # 📌 Description du projet
 
 Trotti-UL est une application académique simulant un système complet de gestion de trottinettes électriques sur le campus de l’Université Laval.
+Ce projet a été fait pour le cours d’Architecture logicielle (GLO-4003).
 Elle inclut :
 
 - Un système d’inscription et authentification sécurisé
